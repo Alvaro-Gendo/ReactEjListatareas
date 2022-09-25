@@ -1,18 +1,34 @@
 import ListaTarea from "./ListaTarea";
 import { Form, Button } from "react-bootstrap";
+import { useState } from "react";
 
 const Formulario = () => {
+  const [tarea, setTarea] = useState("");
+  const [arregloTarea, setArregloTarea] = useState([]);
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setArregloTarea([...arregloTarea, tarea]);
+    //limpiar el input
+    setTarea("")
+  };
+
   return (
     <div>
-      <Form>
+      <Form onSubmit={handleSubmit}>
         <Form.Group className="mb-3 d-flex" controlId="formBasicEmail">
-          <Form.Control type="text" placeholder="Ingresar tarea" />
+          <Form.Control
+            type="text"
+            placeholder="Ingresar tarea"
+            onChange={(e) => setTarea(e.target.value)}
+            value={tarea}
+          />
           <Button variant="primary" type="submit">
             Cargar
           </Button>
         </Form.Group>
       </Form>
-      <ListaTarea />
+      <ListaTarea arregloTarea={arregloTarea}/>
     </div>
   );
 };
