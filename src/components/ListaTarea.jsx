@@ -1,15 +1,18 @@
 import ItemTarea from "./ItemTarea";
-import ListGroup from 'react-bootstrap/ListGroup';
+import ListGroup from "react-bootstrap/ListGroup";
 
-const ListaTarea = ({arregloTarea, borrarTarea}) => {
-
-    return (
+const ListaTarea = ({ tarea, setTarea }) => {
+  return (
     <ListGroup>
-        {
-            arregloTarea.map((tarea, posicion)=><ItemTarea key={posicion} nombreTarea={tarea} borrarTarea={borrarTarea}></ItemTarea>)
-        }
+      {tarea.map((tarea) => (
+        <ItemTarea
+          key={tarea._id}
+          tarea={tarea}
+          setTarea={setTarea}
+        ></ItemTarea>
+      ))}
     </ListGroup>
-    );
+  );
 };
 
 export default ListaTarea;
